@@ -65,6 +65,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-写Hexo博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/17/写Hexo博客/" class="article-date">
+  <time datetime="2017-02-17T04:03:15.000Z" itemprop="datePublished">2017-02-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/17/写Hexo博客/">写Hexo博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。</p>
+<p>看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，这下子傻眼了，卧槽。<br>这里要插入图片||难道不是这个终端。换git bash，就有另外一个问题，我没有权限。 这里要插入图片 </p>
+<p>好吧，然后就是一通Google 百度。费了九牛二虎之力，看到这里<a href="http://blog.cumtpn.com/2016/10/14/hexo-blog/#more，才发现原因是：git的执行目录没有加入系统环境变量。解决方案：1.将git加入环境变量Path中。2.直接在git" target="_blank" rel="external">http://blog.cumtpn.com/2016/10/14/hexo-blog/#more，才发现原因是：git的执行目录没有加入系统环境变量。解决方案：1.将git加入环境变量Path中。2.直接在git</a> shell中进行操作。</p>
+<p>以前呢是正常的，而我也没去碰到什么hexo的配置呀什么的。所以就试着用git shell操作，进入到博客目录后D:\HexoBlog\blog，就有点印象了，之前应该是用这个终端写的。好吧，先试一下再说，没有报错误，很正常，就是新文章没有出现在服务器网页上，可是本地查看却能看到新文章localhost 5000端口，很奇怪，但是log显示说内容已经是最新的了，怎么可能，去查一下怎么发文章，麻蛋，还要执行一下hexo g来生成网页内容的，我之前看的一篇文章没有提到这句命令，直接就调用了hexo d。执行完hexo g，hexo d，就能在远程网页上显示了。哎呀，太开心了。</p>
+<p>其实就是我忘了用哪个终端的问题引起的，然后就发现了挺多问题。哈哈。用其他终端好像也是可以的，而我没有做相应的配置而已吧。</p>
+<p>localhost查看不能用4000（默认）端口，据说是与福昕阅读器的端口冲突了，因为我电脑装有这款阅读器，所以得改端口号，比如说改为5000，然后就能正常访问了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://brandon-winterfell.github.io/2017/02/17/写Hexo博客/" data-id="ciz9bp0wj00049sy3c5b00d2p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hei-you-should-see-me" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/16/hei-you-should-see-me/" class="article-date">
@@ -92,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://brandon-winterfell.github.io/2017/02/16/hei-you-should-see-me/" data-id="ciz8eh1dd0000bcy3h706smjb" class="article-share-link">Share</a>
+      <a data-url="https://brandon-winterfell.github.io/2017/02/16/hei-you-should-see-me/" data-id="ciz9bp0w600009sy3noa7sx5i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://brandon-winterfell.github.io/2017/02/16/my-second-post/" data-id="ciz8eh1dp0003bcy3qtlheziu" class="article-share-link">Share</a>
+      <a data-url="https://brandon-winterfell.github.io/2017/02/16/my-second-post/" data-id="ciz9bp0wf00029sy3lpp6o8oz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://brandon-winterfell.github.io/2016/11/20/my-new-post/" data-id="ciz8eh1dm0002bcy37giw2yix" class="article-share-link">Share</a>
+      <a data-url="https://brandon-winterfell.github.io/2016/11/20/my-new-post/" data-id="ciz9bp0wi00039sy36gmo8dc0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://brandon-winterfell.github.io/2016/11/19/hello-world/" data-id="ciz8eh1di0001bcy316x14y7m" class="article-share-link">Share</a>
+      <a data-url="https://brandon-winterfell.github.io/2016/11/19/hello-world/" data-id="ciz9bp0wd00019sy3gsjv8k3c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -252,6 +294,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/02/17/写Hexo博客/">写Hexo博客</a>
+          </li>
         
           <li>
             <a href="/2017/02/16/hei-you-should-see-me/">hei you should see me</a>
