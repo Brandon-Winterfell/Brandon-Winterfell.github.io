@@ -1705,7 +1705,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #55fff6;
+  background: #60b0ee;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2619,12 +2619,16 @@ hr {
 .posts-expand {
   padding-top: 0;
 }
-.posts-expand .post-title,
+.posts-expand .post-title {
+  text-align: center;
+}
+.posts-expand .post-more-link {
+  text-align: center;
+}
 .posts-expand .post-meta {
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
-  .posts-expand .post-title,
   .posts-expand .post-meta {
     text-align: center;
   }

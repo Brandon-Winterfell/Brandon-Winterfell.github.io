@@ -192,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -202,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            Kategorien
           </a>
         </li>
       
@@ -212,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -295,7 +295,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T10:29:32+08:00">
                 2017-02-22
@@ -316,7 +316,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -356,8 +356,7 @@
 
       
         
-          
-            <p>转载自：<a href="http://www.cnblogs.com/oubo/archive/2012/01/13/2394640.html" target="_blank" rel="external">http://www.cnblogs.com/oubo/archive/2012/01/13/2394640.html</a></p>
+          <p>转载自：<a href="http://www.cnblogs.com/oubo/archive/2012/01/13/2394640.html">http://www.cnblogs.com/oubo/archive/2012/01/13/2394640.html</a></p>
 <h2 id="1-什么是类和对象？"><a href="#1-什么是类和对象？" class="headerlink" title="1.什么是类和对象？"></a>1.什么是类和对象？</h2><p><strong>EVERYTHING IS OBJECT（万物皆对象）</strong>所有的事物都有两个方面：</p>
 <ul>
 <li>有什么（属性）：用来描述对象。</li>
@@ -366,153 +365,14 @@
 <li>类：具有共同属性和行为的对象的抽象。类是创建对象的模板。</li>
 </ul>
 <h2 id="2-为什么要使用面向对象？"><a href="#2-为什么要使用面向对象？" class="headerlink" title="2.为什么要使用面向对象？"></a>2.为什么要使用面向对象？</h2><p><strong>首先，面向对象符号人类看待事物的一般规律。</strong>对象的方法的实现细节对其他对象是屏蔽的。我们通过类来看待对象，类是对象的抽象。</p>
-<p><strong>其次，采用面向对象方法可以使系统各部分各司其职、各尽所能。</strong>对象之间的耦合性一定要低。这样才能使每个对象本身做成最好的。</p>
-<p>对于对象的要求：<strong>高内聚、低耦合</strong>，这样容易拼装成为一个系统。</p>
-<p>实现高内聚就是要最大限度的提高复用性（复用性好是因为高内聚）。可复用性是OOP的基础。</p>
-<h2 id="3-面向过程思想和面向对象思想比较？"><a href="#3-面向过程思想和面向对象思想比较？" class="headerlink" title="3.面向过程思想和面向对象思想比较？"></a>3.面向过程思想和面向对象思想比较？</h2><p>面向过程的思想：由过程、步骤、函数组成，以过程为核心；</p>
-<p>面向对象的思想：以对象为中心，先开发类，得到对象，<strong>通过对象之间相互通信实现功能</strong>。</p>
-<h2 id="4-实例变量和局部变量的比较"><a href="#4-实例变量和局部变量的比较" class="headerlink" title="4.实例变量和局部变量的比较"></a>4.实例变量和局部变量的比较</h2><ul>
-<li>实例变量：定义在类中但在任何方法之外。（New出来的均有初值）（成员变量、静态变量、类变量）</li>
-<li>局部变量：定义在方法之中的变量。</li>
-<li>局部变量要先赋值，再进行运算，而实例变量均已经赋初值。这是局部变量和实例变量的一大区别。实例变量的对象赋值为null。</li>
-<li>不允许在同一作用域内定义两个两个相同名称的实例变量和局部变量，但实例变量和局部变量允许命名冲突，因为作用域不一样，名称相同的话，在方法内指的是那个局部变量。</li>
-<li>区分实例变量和局部变量时一定要写this。</li>
-<li>这里应该提一下两种变量的生命周期。其实不止两种。（todo）</li>
-</ul>
-<h2 id="5-介绍一下对构造函数的理解"><a href="#5-介绍一下对构造函数的理解" class="headerlink" title="5.介绍一下对构造函数的理解"></a>5.介绍一下对构造函数的理解</h2><p>构造方法是当用类生成对象时，系统在生成对象的过程中利用的方法。</p>
-<ul>
-<li>注意：构造方法在生成对象的时候会被调用，但并不是构造方法生成了对象。（todo 执行顺序 牛客网的那道题）</li>
-<li>构造方法没有返回值。格式为：public方法名。</li>
-<li>构造方法的方法名与类名相同。</li>
-<li>构造方法是在对象生成的过程中自动调用，不可能利用指令去调用。</li>
-<li>在一个对象的生命周期中构造方法只用一次，一旦这个对象生成，那么这个构造方法失效。</li>
-<li>注意：在<strong>对象变量</strong>中存放的是<strong>引用（地址）</strong>；在<strong>简单变量</strong>中存放的是<strong>数值</strong>。</li>
-<li>可以构造多个构造方法，但多个构造方法的参数表一定不同，<strong>（重载）</strong>，参数顺序不同即属于不同的构造方法。</li>
-<li>如果我们未给类提供一个构造方法，那么系统（准确来说，是编译器在编译的时候todo）会自动提供一个参数为空的构造方法。</li>
-</ul>
-<h2 id="6-面向对象方法的重载（Overloading）和覆盖（Overriding）"><a href="#6-面向对象方法的重载（Overloading）和覆盖（Overriding）" class="headerlink" title="6.面向对象方法的重载（Overloading）和覆盖（Overriding）"></a>6.面向对象方法的重载（Overloading）和覆盖（Overriding）</h2><p>关键点：参数列表、修饰词、返回值</p>
-<p>Overloading在一个类中可以定义多个同名方法，各个方法的<em>参数列表</em>一定不同，但<em>修饰词</em>可能相同，<em>返回值</em>也可能相同。Overloading是编译时的多态。</p>
-<p>Overriding指子类与父类之间的同名方法，参数表顺序一定相同，单修饰符和返回值可能不同，构造函数无法覆盖。Overriding是运行时多态。</p>
-<h2 id="7-this关键字"><a href="#7-this关键字" class="headerlink" title="7.this关键字"></a>7.this关键字</h2><p>This表示当前对象。</p>
-<p>特别注意：用this调用其他构造方法时，this必须为第一条语句，然后才是其他语句。</p>
-<h2 id="8-面向对象三大特性之封装"><a href="#8-面向对象三大特性之封装" class="headerlink" title="8.面向对象三大特性之封装"></a>8.面向对象三大特性之封装</h2><p>java中提供4个<strong>修饰符</strong>来进行对象属性和方法的访问权限控制：</p>
-<ul>
-<li>private：类内部可见</li>
-<li>default：包内部可见</li>
-<li>protected：包内部或子类可见</li>
-<li>public：所有可见</li>
-<li>todo 都没讲封装</li>
-</ul>
-<h2 id="9-面向对象三大特性之继承"><a href="#9-面向对象三大特性之继承" class="headerlink" title="9.面向对象三大特性之继承"></a>9.面向对象三大特性之继承</h2><ul>
-<li>父类的非私有化属性和方法可以默认继承到子类。（子类叫富二代）</li>
-<li>父类的构造方法子类不可以继承，更不存在覆盖的问题。（非构造方法可以）</li>
-<li>如果子类访问父类的构造方法，则在编译的时候提示访问不到该方法。</li>
-<li>Java中不允许多继承，一个类有且只有一个父类（单继承）。（父类又有父类）</li>
-<li>Java的数据结构为树型结构，而非网状。（Java通过接口和内部类实现多继承）</li>
-<li>对于方法的修饰词，子类方法要比父类的方法范围更加的宽泛。父类为public，那么子类为private则出现错误。</li>
-<li>super()表示调用父类的构造方法，（一般在子类的构造方法中调用，用父类的构造方法来构造对象）super.xxx表示调用父类的方法（属性）todo。super()也和this一样必须放在第一行。this()用于调用本类的构造方法，多个构造函数的时候就可以用少参数的构造函数去调用多参数的构造方法。</li>
-</ul>
-<p>当构造一个对象的时候，系统先构造父类对象，再构造子类对象。（啊，富二代，你不想要你的财产了吗！哈哈 你父类的非私有化属性和方法是一笔巨大的财富了）构造一个对象的顺序：（注意：构造父类对象的时候也是这几步）</p>
-<ol>
-<li>递归地构造父类对象；</li>
-<li>顺序地调用本类成员属性赋初值语句；</li>
-<li>然后才到本类的构造方法。</li>
-</ol>
-<h2 id="10-面向对象三大特性之多态"><a href="#10-面向对象三大特性之多态" class="headerlink" title="10.面向对象三大特性之多态"></a>10.面向对象三大特性之多态</h2><p>多态指的是编译时类型不变化，而运行时类型变化。</p>
-<ul>
-<li>编译时多态：编译时动态重载；</li>
-<li>运行时多态：指一个对象可以具有多个类型。</li>
-</ul>
-<h2 id="11-修饰符static"><a href="#11-修饰符static" class="headerlink" title="11.修饰符static"></a>11.修饰符static</h2><p>static定义的是一块为整个类共有的一块存储区域，其发生变化时访问到的数据都是变化之后的。其变量可以通过类名去访问：类名.变量名。这种变量也叫类变量，是类级别的，不是对象级别的。与实例对象访问变量是等价的。<strong>static可修饰属性、方法和代码块</strong>：</p>
-<ul>
-<li>static修饰的属性为一个类的<strong>共享变量</strong>，属于整个类，在不实例化对象的情况下就能访问。</li>
-<li>static修饰方法表明此方法为类方法（静态方法），静态方法不需要有对象，可以使用类名调用，静态方法不能访问非静态成员，包括成员的变量和方法，因为此时是<strong>通过类调用的，没有对象的概念（对象此刻都没有创建）</strong>。this是不可用的。</li>
-<li>当static修饰代码块时（注：此代码块要在此类的任何一个方法之外），那么这个代码块在代码被装进虚拟机生成对象的时候可被装载一次，以后再也不执行了，<strong>一般静态代码块被用来初始化静态成员（整个类级别的共享变量）</strong>。</li>
-</ul>
-<p>一般情况下，<strong>主方法</strong>是静态方法，所以可调用静态方法，主方法为静态方法是因为它是整个软件系统的入口，而进入入口时系统没有任何对象，只能使用类调用。覆盖不适用于静态方法，静态方法不可被覆盖。（允许在子类中定义同名静态方法，但是没有多态，严格的讲，方法间没有多态就不能称为覆盖。）</p>
-<h2 id="12-修饰符final"><a href="#12-修饰符final" class="headerlink" title="12.修饰符final"></a>12.修饰符final</h2><p><strong>final可修饰类、属性、方法</strong>：</p>
-<ul>
-<li>当用final修饰类的时候，此类不可被继承，即final类没有子类。这样可以用final保证用户调用时动作的一致性，可以防止子类覆盖情况的发生。</li>
-<li>利用final修饰一个属性（变量）的时候，此时的属性成为常量。<strong>常量的地址不可改变，但在地址中保存的值（即对象的属性）是可以改变的</strong> <em>特殊情况是String类型的对象，它引用的地址中保存的值也不可以改变。</em>String类型的不变性。</li>
-<li>利用final定义方法：这样的方法为一个不可覆盖的方法。如果在父类中有final定义的方法，那么在子类中继承同一个方法。todo，子类可以访问父类的final修饰的变量吗，final修饰变量是指变量的地址不可改变而已，那就是子类可以使用罗，跟使用是两码事。</li>
-</ul>
-<p>对于在构造方法中利用final进行赋值的时候，此时在构造之前系统设置的默认值相对于构造方法失效。常量（这里的常量指的是实例常量：即成员变量）赋值：</p>
-<ol>
-<li>在初始化的时候通过显示声明赋值。final int x=3；</li>
-<li>在构造的时候赋值（定义时不赋值，但是默认是null吧）todo 内存分配 null 是指控地址呀 有点问题</li>
-</ol>
-<p>局部变量可以随时赋值。<strong>注：如果一个方法前有修饰词private或static，则系统会自动在前面加上final。即private和static方法默认均为final方法。是不是很好理解，private就表示不能重写了嘛，static方法是类级别的。java中使用final和static组合，声明常量标识符（固定语法）。final并不涉及继承，继承取决于类的修饰符是否为private、default、protected还是public。也就是说，是否继承取决于这个方法对于子类是否可见。</strong></p>
-<h2 id="13-抽象修饰符abstract"><a href="#13-抽象修饰符abstract" class="headerlink" title="13.抽象修饰符abstract"></a>13.抽象修饰符abstract</h2><ul>
-<li>abstract（抽象）可以修饰类、方法</li>
-<li>如果将一个类设置为abstract，则此类不可生成对象，必须被继承使用。</li>
-<li>abstract可以将子类的共性最大限度的抽取出来，放在父类中，以提高程序的简洁性。</li>
-<li>abstract虽然不能生成对象，但是可以声明，作为编译时类型，但不能作为运行时类型。</li>
-<li>final和abstract永远不会同时出现。</li>
-<li>当abstract用于修饰方法时，此时该方法为抽象方法，此时方法不需要实现，实现留给子类覆盖，子类覆盖改方法之后方法才能够生效。</li>
-<li><strong>abstract和static不能放在一起，否则便会出现错误。（这是因为static不可被覆盖，而abstract为了生效必须被覆盖。）</strong></li>
-</ul>
-<h2 id="14-接口和抽象类的比较"><a href="#14-接口和抽象类的比较" class="headerlink" title="14.接口和抽象类的比较"></a>14.接口和抽象类的比较</h2><ol>
-<li>接口和抽象类都用于抽象，接口是抽象类的抽象。接口和抽象类都不能被实例化。</li>
-<li>接口中只有方法声明，没有实现；在接口中声明的方法是具有public和abstract属性，一个类可以实现多个接口（即多继承），接口以‘，’分隔；接口中的方法必须全部实现。</li>
-<li>抽象类可以有部分方法被实现，抽象类必须通过继承才能使用。</li>
-<li><strong>表现目的不同：接口用来声明功能和消息，抽象类用来抽象，达到代码复用。</strong></li>
-</ol>
-<h2 id="15-内部类"><a href="#15-内部类" class="headerlink" title="15.内部类"></a>15.内部类</h2><p><strong>注：所有使用内部类的地方可以不用内部类，使用内部类可以使程序更加的简洁，便于命名规范和划分层次结构。内部类是一个编译时的概念，一旦编译成功，就会成为完全不同的两类。</strong>内部类是指一个外部类的内部再定义一个类。内部类作为外部类的一个成员，并且依附于外部类而存在的。</p>
-<p><strong>内部类同时具有成员和类的特性</strong>（特性不冲突）。内部类的分类：</p>
-<ul>
-<li>成员内部类</li>
-<li>局部内部类</li>
-<li>静态内部类</li>
-<li>匿名内部类（图形是要用到的，必须掌握）</li>
-</ul>
-<p><strong>a.成员内部类</strong></p>
-<p>作为外部类的一个成员存在，与外部类的属性、方法并列。</p>
-<p>内部类和外部类的实例变量可以共存。在内部类中访问实例变量：this.属性，<strong>在内部类访问外部类的实例变量：外部类名.this.属性。</strong></p>
-<p>成员内部类的优点：</p>
-<p>（1）内部类作为外部类的成员，可以访问外部类的私有成员或属性。（即使将外部类声明为private，但是对于处于其内部的内部类还是可见的。）</p>
-<p>（2）用内部类定义在外部类中不可访问的属性。这样就在外部类中实现了比外部类的private还要小的访问权限。</p>
-<p>成员内部类不可以有静态属性。</p>
-<p>建立内部类对象时应注意：在外部类的内部可以直接使用inner s=new inner();（因为外部类知道inner是哪个类，所以可以生成对象。）而在外部类的外部（就是其他类里面），要生成（new）一个内部类对象，需要首先建立一个外部类对象（外部可用），然后在生成一个内部类对象。</p>
-<p>Outer outer=new Outer(); Outer.Inner in=outer.new Inner();</p>
-<p>错误的定义方式：Outer.Inner in=new Outer.Inner()。</p>
-<p>注意：当Outer是一个private类时，外部类对于其外部访问是私有的，所以就无法建立外部类对象，进而也无法建立内部类对象。</p>
-<p><strong>b.局部内部类</strong></p>
-<p>在方法中定义的内部类称为局部内部类。与局部变量类似，在局部内部类前不加修饰符public和private，其范围是定义它的代码块。</p>
-<p>注意：局部内部类不仅可以访问外部类实例变量，还可以访问外部类的局部变量（什么叫外部类的局部变量，就是在该方法中定义的变量吧，或者传进来的参数）（但此时要求外部类的局部变量必须为final）</p>
-<p>在类外不可直接生成局部内部类（保证局部内部类对外是不可见的）。</p>
-<p>要想使用局部内部类时需要生成对象，对象调用方法，在方法中才能调用其局部内部类。</p>
-<p><strong>c.静态内部类</strong></p>
-<p>注意：前三种内部类与变量类似，所以可见对照参考变量，静态内部类定义在类中，任何方法外，用static定义。</p>
-<p>静态内部类只能访问外部类的静态成员。</p>
-<p>生成（new）一个静态内部类不需要外部类成员：这是静态内部类和成员内部类的区别。</p>
-<p>静态内部类的对象可以直接生成：Outer.Inner in=new Outer.Inner();而不是通过生成外部类的对象来生成。（类级别，不是对象级别）这样实际上使静态内部类成为了一个顶级类。</p>
-<p>静态内部类不可用private来进行定义。</p>
-<p><strong>注意：当类与接口（或者是接口与接口）发生方法命名冲突的时候，此时必须要有内部类来实现。用接口不能完全地实现多继承，用接口配合内部类才能实现真正的多继承。</strong></p>
-<p><strong>d.匿名内部类</strong></p>
-<p>匿名内部类是一种特殊的局部内部类，它是通过匿名来实现接口。</p>
-<p>注：一个匿名内部类一定是在new的后面，用其隐含实现一个接口或实现一个类，没有类名，根据多态，我们使用其父类名。因其为局部内部类，那么局部内部类的所有限制都对其生效。</p>
-<p>匿名内部类是唯一一种无构造方法类。</p>
-<p>匿名内部类在编译的时候由系统自动起名Out$1.class。</p>
-<p>如果一个对象编译时的类型是接口，那么其运行的类型为实现这个接口的类。因匿名内部类无构造方法，所以其使用范围非常的有限。</p>
-<h2 id="16-运行时异常与普通异常"><a href="#16-运行时异常与普通异常" class="headerlink" title="16.运行时异常与普通异常"></a>16.运行时异常与普通异常</h2><p>异常表示程序运行过程中可能出现的非正常状态，运行时异常表示虚拟机的通常操作中可能遇到的异常，是一种常见运行错误。java编译器要求方法必须声明抛出可能发生的非运行时异常，但是并不要求必须声明抛出未被捕获的运行时异常。</p>
-<p>Throwable是所有java程序中错误处理的父类，有两种子类：Error和Exception。</p>
-<ul>
-<li>Error：表示由JVM所侦测到的无法预期的错误，由于这是属于JVM层次的严重错误，导致JVM无法继续执行，因此，这是不可捕捉到的，无法采取任何恢复的操作，顶多只能显示错误信息。</li>
-<li>Exception：表示可恢复的例外，这是可捕捉到的。</li>
-</ul>
-<p>Java提供了两类主要的异常：runtime exception和checked exception。</p>
-<ul>
-<li>checked异常：也就是我们经常遇到的IO异常，以及SQL异常都是这种异常。对于这种异常，JAVA编译器强制要求我们必需对出现的这些异常进行catch。所以，面对这种异常不管我们是否愿意，只能自己去写一个堆catch块去处理可能的异常。</li>
-<li>runtime exception，也称运行时异常，我们可以不处理。当出现这样的错误时，总是由虚拟机接管。比如：我们从来没有人去处理NullPointException异常，它就是运行时异常，并且这种异常还是最常见的异常之一。</li>
-</ul>
-<p>出现运行时异常后，系统会把异常一直往上层抛，一直遇到处理代码。如果没有处理块，到最上层，如果是多线程就由Thread.run()抛出，如果是单线程就被main()抛出。抛出之后，如果是线程，这个线程也就退出了。如果是主程序抛出的异常，那么这整个程序也就退出了。运行时异常是Exception的子类，也有一般异常的特点，是可以被Catch块处理的。只不过往往我们不对它处理罢了。也就是说，你如果不对运行时异常进行处理，那么出现运行时异常之后，要么是线程终止，要么是主线程终止。异常处理的目标之一就是为了把程序从异常中恢复出来。</p>
-<h2 id="17-Java命名规范"><a href="#17-Java命名规范" class="headerlink" title="17.Java命名规范"></a>17.Java命名规范</h2><p>必须以英文字母、下划线或‘$’开始，其余可以有数字但不允许包含空格，且组合后的名称不能是Java关键字或保留字。</p>
-<ul>
-<li>匈牙利命名法：以m开始为类成员变量，以g开始为全局变量，以v开始为本地局部变量，常量命名一般不以下划线、美元符开始。（Android命名以m开始表示成员变量 member，以s开始表示静态成员变量）</li>
-<li>驼峰命名：一般称由多个单词或缩写组成的变量名，并且该变量名每个单词首字母均为大写（一般类名全部首字母大写，方法或属性名第一个字母小写）的成为驼峰命名。</li>
-</ul>
-
-          
+<p><strong>其次，采用面向对象方法可以使系统各部分各司其职、各尽所能。</strong>对象之间的耦合性一定要低。这样才能使每个对象本身做成最好的。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/22/Java基础知识总结/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -591,7 +451,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-17T12:03:15+08:00">
                 2017-02-17
@@ -630,15 +490,15 @@
 
       
         
-          
-            <p>之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。</p>
-<p>看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，这下子傻眼了，卧槽。<br>这里要插入图片||难道不是这个终端。换git bash，就有另外一个问题，我没有权限。 这里要插入图片 </p>
-<p>好吧，然后就是一通Google 百度。费了九牛二虎之力，看到这里<a href="http://blog.cumtpn.com/2016/10/14/hexo-blog/#more，才发现原因是：git的执行目录没有加入系统环境变量。解决方案：1.将git加入环境变量Path中。2.直接在git" target="_blank" rel="external">http://blog.cumtpn.com/2016/10/14/hexo-blog/#more，才发现原因是：git的执行目录没有加入系统环境变量。解决方案：1.将git加入环境变量Path中。2.直接在git</a> shell中进行操作。</p>
-<p>以前呢是正常的，而我也没去碰到什么hexo的配置呀什么的，git的配置也没有碰过呀。所以就试着用git shell操作，进入到博客目录后D:\HexoBlog\blog，就有点印象了，之前应该是用这个终端写的。好吧，先试一下再说，没有报错误，很正常，就是新文章没有出现在服务器网页上，可是本地查看却能看到新文章localhost 5000端口，很奇怪，但是log显示说内容已经是最新的了，怎么可能。去github上看一下，_posts目录没有新文章，卧槽。去查一下怎么发文章，麻蛋，还要执行一下hexo g来生成网页内容的，我之前看的一篇文章没有提到这句命令，直接就调用了hexo d。执行完hexo g，hexo d，就能在远程网页上显示了。哎呀，太开心了。</p>
-<p>其实就是我忘了用哪个终端的问题引起的，然后就发现了挺多问题。哈哈。用其他终端好像也是可以的，而我没有做相应的配置而已吧。</p>
-<p>localhost查看不能用4000（默认）端口，据说是与福昕阅读器的端口冲突了，因为我电脑装有这款阅读器，所以得改端口号，比如说改为5000，然后就能正常访问了。</p>
-
-          
+          <p>之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。</p>
+<p>看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，这下子傻眼了，卧槽。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/17/写Hexo博客/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -717,7 +577,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T22:01:49+08:00">
                 2016-11-20
@@ -756,12 +616,16 @@
 
       
         
-          
-            <p>我想说这个鬼东西真麻烦。卧槽。把github 克隆下来的  和hexo的搞混了。</p>
+          <p>我想说这个鬼东西真麻烦。卧槽。把github 克隆下来的  和hexo的搞混了。</p>
 <p>反正不知道写什么好。那就来诗吧。</p>
-<p>春江花月夜<br>春江潮水连海平，海上明月共潮生。<br>滟滟随波千万里，何处春江无月明！<br>江流宛转绕芳甸，月照花林皆似霰;<br>空里流霜不觉飞，汀上白沙看不见。<br>江天一色无纤尘，皎皎空中孤月轮。<br>江畔何人初见月？江月何年初照人？<br>人生代代无穷已，江月年年只相似。<br>不知江月待何人，但见长江送流水。<br>白云一片去悠悠，青枫浦上不胜愁。<br>谁家今夜扁舟子？何处相思明月楼？<br>可怜楼上月徘徊，应照离人妆镜台。<br>玉户帘中卷不去，捣衣砧上拂还来。<br>此时相望不相闻，愿逐月华流照君。<br>鸿雁长飞光不度，鱼龙潜跃水成文。<br>昨夜闲潭梦落花，可怜春半不还家。<br>江水流春去欲尽，江潭落月复西斜。<br>斜月沉沉藏海雾，碣石潇湘无限路。<br>不知乘月几人归，落月摇情满江树。</p>
-
-          
+<p>春江花月夜<br>春江潮水连海平，海上明月共潮生。<br>滟滟随波千万里，何处春江无月明！<br>江流宛转绕芳甸，月照花林皆似霰;
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/20/my-new-post/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -840,7 +704,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-19T19:01:14+08:00">
                 2016-11-19
@@ -879,18 +743,16 @@
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/19/hello-world/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -966,7 +828,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -975,7 +837,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/categories">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
+                <span class="site-state-item-name">Kategorien</span>
               </a>
             </div>
           
@@ -984,7 +846,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1032,7 +894,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
