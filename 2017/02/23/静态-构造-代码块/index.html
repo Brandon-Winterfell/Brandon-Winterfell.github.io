@@ -1,0 +1,1009 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态-构造-代码块">
+<meta property="og:url" content="https://brandon-winterfell.github.io/2017/02/23/静态-构造-代码块/index.html">
+<meta property="og:site_name" content="Brandon-Winterfell's Blog">
+<meta property="og:description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执">
+<meta property="og:image" content="https://brandon-winterfell.github.io/images/局部变量.png">
+<meta property="og:image" content="https://brandon-winterfell.github.io/images/普通变量.png">
+<meta property="og:updated_time" content="2017-02-23T10:14:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="静态-构造-代码块">
+<meta name="twitter:description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执">
+<meta name="twitter:image" content="https://brandon-winterfell.github.io/images/局部变量.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://brandon-winterfell.github.io/2017/02/23/静态-构造-代码块/"/>
+
+
+
+
+
+  <title> 静态-构造-代码块 | Brandon-Winterfell's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?314832464c94b95e6b76a5f064a517cb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brandon-Winterfell's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">闲寂古池旁,青蛙跳进水中央,扑通一声响</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://brandon-winterfell.github.io/2017/02/23/静态-构造-代码块/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Brandon-Winterfell">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Brandon-Winterfell's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Brandon-Winterfell's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                静态-构造-代码块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T15:12:57+08:00">
+                2017-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/23/静态-构造-代码块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/23/静态-构造-代码块/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/23/静态-构造-代码块/" class="leancloud_visitors" data-flag-title="静态-构造-代码块">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题的来由"><a href="#问题的来由" class="headerlink" title="问题的来由"></a>问题的来由</h2><p>前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执行到初始化成员变量的代码），不好命名，而且这是一个不懂的点。<a id="more"></a><br><img src="/images/局部变量.png" alt="局部变量"><br><img src="/images/普通变量.png" alt="普通变量"></p>
+<h2 id="牛客网上的一道题"><a href="#牛客网上的一道题" class="headerlink" title="牛客网上的一道题"></a>牛客网上的一道题</h2><p>前两天就想解决这个问题，去google了一下，大致就是：在静态代码块里构造（new）对象是静态变量呢还是成员变量呢。（而这实质上算是另外一个问题了，事实上在静态代码块里构造（new）的对象是局部变量。从上面第一个图可以看出来。）然后看到牛客网的一道题。<br>以下代码的输出结果是？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">https://www.nowcoder.com/questionTerminal/ab6eb06face84c4e81ab5bc6f0f7f258?source=relative</div><div class="line">public class B</div><div class="line">&#123;</div><div class="line">    public static B t1 = new B();</div><div class="line">    public static B t2 = new B();</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;构造块&quot;);</div><div class="line">    &#125;</div><div class="line">    static</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;静态块&quot;);</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args)</div><div class="line">    &#123;</div><div class="line">        B t = new B();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>A.静态块 构造块 构造块 构造块<br>B.构造块 静态块 构造块 构造块<br>C.构造块 构造块 静态块 构造块<br>D.构造块 构造块 构造块 静态块</p>
+<p>然后我还选错了。卧槽。正确答案是C。</p>
+<blockquote>
+<p>对下面静态代码块咋不初始化？的解释：加载类的时候，会执行静态初始化，所以，先初始化 t1 ,这个时候，发现B已经在加载过程中了，所以不会再次<strong>触发</strong>类加载。但是类的方法体，元数据已经有了，所以 先分配内存，再调用B的构造函数。</p>
+<p>开始时JVM加载B.class，对所有的静态成员进行声明，t1 t2被初始化为默认值，为null，又因为t1 t2需要被显式初始化，所以对t1进行显式初始化，初始化代码块→构造函数（没有就是调用默认的构造函数），咦！静态代码块咋不初始化？因为在开始时已经对static部分进行了初始化，虽然只对static变量进行了初始化，但在初始化t1时也不会再执行static块了，因为JVM认为这是第二次加载类B了，所以static会在t1初始化时被忽略掉，所以直接初始化非static部分，也就是构造块部分（输出’’构造块’’）接着构造函数（无输出）。接着对t2进行初始化过程同t1相同（输出’构造块’），</p>
+<p>此时就对所有的static变量都完成了初始化，接着就执行static块部分（输出’静态块’），（static变量与static块的执行顺序是按它们声明的顺序执行）</p>
+<p>上面是类级别的加载，下面是对象级别的构造。</p>
+<p>接着执行，main方法，同样也，new了对象，调用构造函数输出（’构造块’）</p>
+</blockquote>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>对于构造块不懂，然后搜索到一篇文章：<a href="http://www.cnblogs.com/chenssy/p/3413229.html" target="_blank" rel="external">java提高篇(十二)—–代码块</a><br>以下转载那篇文章 <a href="http://www.cnblogs.com/chenssy/p/3413229.html" target="_blank" rel="external">http://www.cnblogs.com/chenssy/p/3413229.html</a><br>在编程过程中我们可能会遇到如下这种形式的程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    &#123;</div><div class="line">        ////</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种形式的程序段我们将其称之为代码块，所谓代码块就是用大括号({})将多行代码封装在一起，形成一个独立的数据体，用于实现特定的算法。一般来说代码块是不能单独运行的，它必须要有运行主体。在Java中代码块主要分为四种：</p>
+<h3 id="普通代码块"><a href="#普通代码块" class="headerlink" title="普通代码块"></a>普通代码块</h3><p>普通代码块是我们用得最多的也是最普遍的，它就是在方法名后面用{}括起来的代码段。普通代码块是不能够单独存在的，它必须要紧跟在方法名后面。同时也必须要使用方法名调用它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;普通代码块&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h3><p>想到静态我们就会想到static，静态代码块就是用static修饰的用{}括起来的代码段，它的主要目的就是对静态属性进行初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    static&#123;</div><div class="line">        System.out.println(&quot;静态代码块&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="同步代码块"><a href="#同步代码块" class="headerlink" title="同步代码块"></a>同步代码块</h3><p>使用 synchronized 关键字修饰，并使用“{}”括起来的代码片段，它表示同一时间只能有一个线程进入到该方法块中，是一种多线程保护机制。</p>
+<h3 id="构造代码块"><a href="#构造代码块" class="headerlink" title="构造代码块"></a>构造代码块</h3><p>在类中直接定义没有任何修饰符、前缀、后缀的代码块即为构造代码块。我们明白一个类必须至少有一个构造函数，构造函数在生成对象时被调用。构造代码块和构造函数一样同样是在生成一个对象时被调用，那么构造代码在什么时候被调用？如何调用的呢？看如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    /**</div><div class="line">     * 构造代码</div><div class="line">     */</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;执行构造代码块...&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * 无参构造函数</div><div class="line">     */</div><div class="line">    public Test()&#123;</div><div class="line">        System.out.println(&quot;执行无参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * 有参构造函数</div><div class="line">     * @param id  id</div><div class="line">     */</div><div class="line">    public Test(String id)&#123;</div><div class="line">        System.out.println(&quot;执行有参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面定义了一个非常简单的类，该类包含无参构造函数、有参构造函数以及构造代码块，同时在上面也提过代码块是没有独立运行的能力，他必须要有一个可以承载的载体，那么编译器会如何来处理构造代码块呢？编译器会将代码块按照他们的顺序(假如有多个代码块)插入到所有的构造函数的最前端，这样就能保证不管调用哪个构造函数都会执行所有的构造代码块。上面代码等同于如下形式（这有点简单了，因为没有普通成员的初始化，看一下下面的 <em>普通成员变量和代码块的执行顺序</em>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    /**</div><div class="line">     * 无参构造函数</div><div class="line">     */</div><div class="line">    public Test()&#123;</div><div class="line">        System.out.println(&quot;执行构造代码块...&quot;);</div><div class="line">        System.out.println(&quot;执行无参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * 有参构造函数</div><div class="line">     * @param id  id</div><div class="line">     */</div><div class="line">    public Test(String id)&#123;</div><div class="line">        System.out.println(&quot;执行构造代码块...&quot;);</div><div class="line">        System.out.println(&quot;执行有参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        new Test();</div><div class="line">        System.out.println(&quot;----------------&quot;);</div><div class="line">        new Test(&quot;1&quot;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<pre><code>------------
+Output:
+执行构造代码块...
+执行无参构造函数...
+----------------
+执行构造代码块...
+执行有参构造函数...
+</code></pre><p>从上面的运行结果可以看出在new一个对象的时候总是先执行构造代码，再执行构造函数，但是有一点需要注意构造代码不是在构造函数之前运行的，它是依托构造函数执行的。正是由于构造代码块有这几个特性，所以它常用于如下场景：</p>
+<h4 id="1、-初始化实例变量"><a href="#1、-初始化实例变量" class="headerlink" title="1、 初始化实例变量"></a>1、 初始化实例变量</h4><p>如果一个类中存在若干个构造函数，这些构造函数都需要对实例变量进行初始化，如果我们直接在构造函数中实例化，必定会产生很多重复代码，繁琐和可读性差。这里我们可以充分利用构造代码块来实现。这是利用编译器会将构造代码块添加到每个构造函数中的特性。</p>
+<h4 id="2、-初始化实例环境"><a href="#2、-初始化实例环境" class="headerlink" title="2、 初始化实例环境"></a>2、 初始化实例环境</h4><p>一个对象必须在适当的场景下才能存在，如果没有适当的场景，则就需要在创建对象时创建此场景。我们可以利用构造代码块来创建此场景，尤其是该场景的创建过程较为复杂。构造代码会在构造函数之前执行。</p>
+<p>上面两个常用场景都充分利用构造代码块的特性，能够很好的解决在实例化对象时构造函数比较难解决的问题，利用构造代码不仅可以减少代码量，同时也是程序的可读性增强了。特别是当一个对象的创建过程比较复杂，需要实现一些复杂逻辑，这个时候如果在构造函数中实现逻辑，这是不推荐的，因为我们提倡构造函数要尽可能的简单易懂，所以我们可以使用构造代码封装这些逻辑实现部分。</p>
+<h3 id="静态代码块、构造代码块、构造函数执行顺序"><a href="#静态代码块、构造代码块、构造函数执行顺序" class="headerlink" title="静态代码块、构造代码块、构造函数执行顺序"></a>静态代码块、构造代码块、构造函数执行顺序</h3><p>从词面上我们就可以看出他们的区别。静态代码块，静态，其作用级别为类，构造代码块、构造函数，构造，其作用级别为对象。</p>
+<p>1、 静态代码块，它是随着类的加载而被执行，只要类被加载了就会执行，而且只会加载一次，主要用于给类进行初始化。</p>
+<p>2、 构造代码块，每创建一个对象时就会执行一次，且优先于构造函数，主要用于初始化不同对象共性的初始化内容和初始化实例环境。</p>
+<p>3、 构造函数，每创建一个对象时就会执行一次。同时构造函数是给特定对象进行初始化，而构造代码是给所有对象进行初始化，作用区域不同。</p>
+<p>通过上面的分析，他们三者的执行顺序应该为：静态代码块 &gt; 构造代码块 &gt; 构造函数。</p>
+<pre><code>public class Test {
+    /**
+     * 静态代码块
+     */
+    static{
+        System.out.println(&quot;执行静态代码块...&quot;);
+    }
+
+    /**
+     * 构造代码块
+     */
+    {
+        System.out.println(&quot;执行构造代码块...&quot;);
+    }
+
+    /**
+     * 无参构造函数
+     */
+    public Test(){
+        System.out.println(&quot;执行无参构造函数...&quot;);
+    }
+
+    /**
+     * 有参构造函数
+     * @param id
+     */
+    public Test(String id){
+        System.out.println(&quot;执行有参构造函数...&quot;);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(&quot;----------------------&quot;);
+        new Test();
+        System.out.println(&quot;----------------------&quot;);
+        new Test(&quot;1&quot;);
+    }
+}
+-----------
+Output:
+执行静态代码块...
+----------------------
+执行构造代码块...
+执行无参构造函数...
+----------------------
+执行构造代码块...
+执行有参构造函数...
+</code></pre><h2 id="普通成员变量和代码块的执行顺序"><a href="#普通成员变量和代码块的执行顺序" class="headerlink" title="普通成员变量和代码块的执行顺序"></a>普通成员变量和代码块的执行顺序</h2><pre><code>// 我要测试初始化普通成员变量先于构造块，还是按声明顺序
+public class Test {
+
+    public static void main(String[] args) {
+        new Test();
+    }
+
+    // -------------------------------------------
+    A a = new A(); // 普通成员变量a
+
+    /**
+     * 构造代码块
+     */
+    {
+        System.out.println(&quot;执行构造代码块...&quot;);
+    }
+
+    A aa = new A(); 普通成员变量aa
+    // -------------------------------------------
+
+    /**
+     * 无参构造函数
+     */
+    public Test(){
+        System.out.println(&quot;执行无参构造函数...&quot;);
+    }    
+}
+
+public class A {
+    public A() {
+        System.out.println(&quot;这是A的构造方法&quot;);
+    }
+}
+
+运行结果：
+这是A的构造方法
+执行构造代码块...
+这是A的构造方法
+执行无参构造函数...
+</code></pre><p>那么这样子的话，在有普通成员变量需要初始化的时候，上面 构造代码块 里所说的等同形式就有点不准确了。</p>
+<h2 id="有继承情况的初始化"><a href="#有继承情况的初始化" class="headerlink" title="有继承情况的初始化"></a>有继承情况的初始化</h2><p>链接：<a href="https://www.nowcoder.com/questionTerminal/ab6eb06face84c4e81ab5bc6f0f7f258?source=relative" target="_blank" rel="external">https://www.nowcoder.com/questionTerminal/ab6eb06face84c4e81ab5bc6f0f7f258?source=relative</a><br>来源：牛客网</p>
+<p>初始化过程：<br>1.初始化父类中的静态成员变量和静态代码块 ； （按声明顺序）<br>2.初始化子类中的静态成员变量和静态代码块 ； （按声明顺序）<br>3.初始化父类的普通成员变量和代码块（按声明顺序），再执行父类的构造方法；<br>4.初始化子类的普通成员变量和代码块（按声明顺序），再执行子类的构造方法。</p>
+<p>总结一下：<br>1.执行顺序：静态代码块&gt;构造代码块&gt;构造方法<br>理由：静态代码块（static{}）在类加载的时候执行一次。<br>构造代码块（{}内的部分）在每一次创建对象时执行，始终在构造方法前执行。<br>构造方法在新建对象时调用（ 就是new的时候 ）。<br>注意： a.静态代码块在类加载的时候就执行，所以它的优先级高于入口main()方法。<br>b.当三种形式不止一次出现，同优先级是按照先后顺序执行。</p>
+<p>2.现在来看下有继承时的情况：</p>
+<pre><code>public class HelloB extends HelloA {
+
+     public HelloB(){
+         System.out.println(&quot;B的构造方法&quot;);
+     }
+     {
+         System.out.println(&quot;B的构造代码块&quot;);
+     }
+     static{
+         System.out.println(&quot;B的静态代码块&quot;);
+     }
+     //public static HelloB hB = new HelloB();
+     public static void main(String[] args){
+         new HelloB();//调用B的构造方法
+     }
+}
+
+class HelloA{
+     public HelloA(){
+         System.out.println(&quot;A的构造方法&quot;);
+     }
+     {
+         System.out.println(&quot;A的构造代码块&quot;);
+     }
+     static{
+         System.out.println(&quot;A的静态代码块&quot;);
+     }
+}
+
+输出结果为：
+A的静态代码块
+B的静态代码块
+A的构造代码块
+A的构造方法
+B的构造代码块
+B的构造方法
+</code></pre><p>可以看出：<br>        a.父类始终先调用（继承先调用父类），并且这三者之间的相对顺序始终保持不变<br>        b.因为静态代码块在类加载时执行，所以先输出的是父类和子类的静态代码块<br>        c.调用B的构造方法创建对象时，构造块和构造方法会一起按顺序执行，还是父类的先调用</p>
+<p>补充：如果在B的静态代码块之前加一句：static HelloB hB = new HelloB();   B的静态代码块会在其执行完后再执行；如果加在之后，则会先执行，说明优先级相同时是按照先后顺序执行的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/22/Java基础知识总结/" rel="next" title="Java基础知识总结">
+                <i class="fa fa-chevron-left"></i> Java基础知识总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/23/静态-构造-代码块/"
+           data-title="静态-构造-代码块" data-url="https://brandon-winterfell.github.io/2017/02/23/静态-构造-代码块/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Brandon-Winterfell" />
+          <p class="site-author-name" itemprop="name">Brandon-Winterfell</p>
+           
+              <p class="site-description motion-element" itemprop="description">闲寂古池旁,青蛙跳进水中央,扑通一声响</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题的来由"><span class="nav-number">1.</span> <span class="nav-text">问题的来由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛客网上的一道题"><span class="nav-number">2.</span> <span class="nav-text">牛客网上的一道题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块"><span class="nav-number">3.</span> <span class="nav-text">代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通代码块"><span class="nav-number">3.1.</span> <span class="nav-text">普通代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代码块"><span class="nav-number">3.2.</span> <span class="nav-text">静态代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步代码块"><span class="nav-number">3.3.</span> <span class="nav-text">同步代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造代码块"><span class="nav-number">3.4.</span> <span class="nav-text">构造代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、-初始化实例变量"><span class="nav-number">3.4.1.</span> <span class="nav-text">1、 初始化实例变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、-初始化实例环境"><span class="nav-number">3.4.2.</span> <span class="nav-text">2、 初始化实例环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代码块、构造代码块、构造函数执行顺序"><span class="nav-number">3.5.</span> <span class="nav-text">静态代码块、构造代码块、构造函数执行顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通成员变量和代码块的执行顺序"><span class="nav-number">4.</span> <span class="nav-text">普通成员变量和代码块的执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有继承情况的初始化"><span class="nav-number">5.</span> <span class="nav-text">有继承情况的初始化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brandon-Winterfell</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"brandon-winterfell"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("k4OHabJDuJ13RNhNkrjU2hrQ-gzGzoHsz", "saH320A6yTLKdnLkDjp9TOta");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
