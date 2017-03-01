@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执">
+<meta name="description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象，当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀。我突然在想在这两个大括号之间（静态代码块）构造（new）对象，这个对象到底是静态的，还是普通的成员变量？（其实是局部变量）（在静态代码块里执行初始化操作的对象是静态变量（这个静态变量在代码块外面已经声明的了），因为静态变量是类级别，成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="静态-构造-代码块">
 <meta property="og:url" content="https://brandon-winterfell.github.io/2017/02/23/静态-构造-代码块/index.html">
 <meta property="og:site_name" content="Brandon-Winterfell's Blog">
-<meta property="og:description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执">
+<meta property="og:description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象，当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀。我突然在想在这两个大括号之间（静态代码块）构造（new）对象，这个对象到底是静态的，还是普通的成员变量？（其实是局部变量）（在静态代码块里执行初始化操作的对象是静态变量（这个静态变量在代码块外面已经声明的了），因为静态变量是类级别，成">
 <meta property="og:image" content="https://brandon-winterfell.github.io/images/局部变量.png">
 <meta property="og:image" content="https://brandon-winterfell.github.io/images/普通变量.png">
-<meta property="og:updated_time" content="2017-02-23T10:14:42.000Z">
+<meta property="og:updated_time" content="2017-03-01T06:06:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="静态-构造-代码块">
-<meta name="twitter:description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执">
+<meta name="twitter:description" content="问题的来由前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象，当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀。我突然在想在这两个大括号之间（静态代码块）构造（new）对象，这个对象到底是静态的，还是普通的成员变量？（其实是局部变量）（在静态代码块里执行初始化操作的对象是静态变量（这个静态变量在代码块外面已经声明的了），因为静态变量是类级别，成">
 <meta name="twitter:image" content="https://brandon-winterfell.github.io/images/局部变量.png">
 
 
@@ -388,7 +388,7 @@
       
 
       
-        <h2 id="问题的来由"><a href="#问题的来由" class="headerlink" title="问题的来由"></a>问题的来由</h2><p>前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象吧（具体有点忘了），当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀，好了，他当时在静态代码块里初始化对象吧，变量的前缀是m，卧槽，我一下子不知道这个变量到底是静态变量还是成员变量（那是静态变量，因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执行到初始化成员变量的代码），不好命名，而且这是一个不懂的点。<a id="more"></a><br><img src="/images/局部变量.png" alt="局部变量"><br><img src="/images/普通变量.png" alt="普通变量"></p>
+        <h2 id="问题的来由"><a href="#问题的来由" class="headerlink" title="问题的来由"></a>问题的来由</h2><p>前几天跟着组件化那门课学习吧，老师在静态代码块里初始化对象，当时老师不管是静态变量还是成员变量都是用的m前缀，那我就喜欢成员变量用m前缀，静态变量用s前缀。我突然在想在这两个大括号之间（静态代码块）构造（new）对象，这个对象到底是静态的，还是普通的成员变量？（其实是局部变量）（在静态代码块里执行初始化操作的对象是静态变量（这个静态变量在代码块外面已经声明的了），因为静态变量是类级别，成员变量是对象级别的，此时对象都没创建(new)出来，或者说还没有执行到初始化成员变量的代码）。<a id="more"></a><br><img src="/images/局部变量.png" alt="局部变量"><br><img src="/images/普通变量.png" alt="普通变量"></p>
 <h2 id="牛客网上的一道题"><a href="#牛客网上的一道题" class="headerlink" title="牛客网上的一道题"></a>牛客网上的一道题</h2><p>前两天就想解决这个问题，去google了一下，大致就是：在静态代码块里构造（new）对象是静态变量呢还是成员变量呢。（而这实质上算是另外一个问题了，事实上在静态代码块里构造（new）的对象是局部变量。从上面第一个图可以看出来。）然后看到牛客网的一道题。<br>以下代码的输出结果是？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">https://www.nowcoder.com/questionTerminal/ab6eb06face84c4e81ab5bc6f0f7f258?source=relative</div><div class="line">public class B</div><div class="line">&#123;</div><div class="line">    public static B t1 = new B();</div><div class="line">    public static B t2 = new B();</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;构造块&quot;);</div><div class="line">    &#125;</div><div class="line">    static</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;静态块&quot;);</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args)</div><div class="line">    &#123;</div><div class="line">        B t = new B();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>A.静态块 构造块 构造块 构造块<br>B.构造块 静态块 构造块 构造块<br>C.构造块 构造块 静态块 构造块<br>D.构造块 构造块 构造块 静态块</p>
@@ -410,7 +410,7 @@
 <h3 id="同步代码块"><a href="#同步代码块" class="headerlink" title="同步代码块"></a>同步代码块</h3><p>使用 synchronized 关键字修饰，并使用“{}”括起来的代码片段，它表示同一时间只能有一个线程进入到该方法块中，是一种多线程保护机制。</p>
 <h3 id="构造代码块"><a href="#构造代码块" class="headerlink" title="构造代码块"></a>构造代码块</h3><p>在类中直接定义没有任何修饰符、前缀、后缀的代码块即为构造代码块。我们明白一个类必须至少有一个构造函数，构造函数在生成对象时被调用。构造代码块和构造函数一样同样是在生成一个对象时被调用，那么构造代码在什么时候被调用？如何调用的呢？看如下代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    /**</div><div class="line">     * 构造代码</div><div class="line">     */</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;执行构造代码块...&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * 无参构造函数</div><div class="line">     */</div><div class="line">    public Test()&#123;</div><div class="line">        System.out.println(&quot;执行无参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * 有参构造函数</div><div class="line">     * @param id  id</div><div class="line">     */</div><div class="line">    public Test(String id)&#123;</div><div class="line">        System.out.println(&quot;执行有参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面定义了一个非常简单的类，该类包含无参构造函数、有参构造函数以及构造代码块，同时在上面也提过代码块是没有独立运行的能力，他必须要有一个可以承载的载体，那么编译器会如何来处理构造代码块呢？编译器会将代码块按照他们的顺序(假如有多个代码块)插入到所有的构造函数的最前端，这样就能保证不管调用哪个构造函数都会执行所有的构造代码块。上面代码等同于如下形式（这有点简单了，因为没有普通成员的初始化，看一下下面的 <em>普通成员变量和代码块的执行顺序</em>）：</p>
+<p>上面定义了一个非常简单的类，该类包含无参构造函数、有参构造函数以及构造代码块，同时在上面也提过代码块是没有独立运行的能力，他必须要有一个可以承载的载体，那么编译器会如何来处理构造代码块呢？编译器会将代码块按照他们的顺序(假如有多个代码块)插入到所有的构造函数的最前端，这样就能保证不管调用哪个构造函数都会执行所有的构造代码块。上面代码等同于如下形式（这有点简单了，因为没有普通成员的初始化，看一下下面的 <em>普通成员变量和代码块的执行顺序</em>，哎呀，<strong>而构造块存在的意义就是对实例变量进行初始化呀</strong>那就没必要再构造块外面再另外的写初始化实例变量的代码了）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    /**</div><div class="line">     * 无参构造函数</div><div class="line">     */</div><div class="line">    public Test()&#123;</div><div class="line">        System.out.println(&quot;执行构造代码块...&quot;);</div><div class="line">        System.out.println(&quot;执行无参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * 有参构造函数</div><div class="line">     * @param id  id</div><div class="line">     */</div><div class="line">    public Test(String id)&#123;</div><div class="line">        System.out.println(&quot;执行构造代码块...&quot;);</div><div class="line">        System.out.println(&quot;执行有参构造函数...&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>运行结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        new Test();</div><div class="line">        System.out.println(&quot;----------------&quot;);</div><div class="line">        new Test(&quot;1&quot;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
@@ -604,6 +604,10 @@ B的构造方法
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/02/23/一些链接/" rel="prev" title="一些链接">
+                一些链接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -678,7 +682,7 @@ B的构造方法
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
