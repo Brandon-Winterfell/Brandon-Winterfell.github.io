@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java集合," />
 
 
 
@@ -87,19 +87,28 @@
 
 
 
-<meta name="description" content="之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。
-看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，而报错信息中还含有乱码，这下子傻眼了，卧槽。">
+<meta name="description" content="关键字： 微型数据库、增删改查操作、时空复杂度
+
+本文主要还对Java中的集合框架做一个大致描述，从一个高的角度俯视这个框架，了解这个框架的一些理念与约定，会大大帮助后面分析某个具体类。
+与现代的数据结构类库的常见情况一样，Java集合类库也将 接口（interface） 与 实现（implementation) 分类
+首先要明确，集合代表了一组对象（和数组一样，但数组长度不能变，而集合能）。J">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写Hexo博客">
-<meta property="og:url" content="https://brandon-winterfell.github.io/2017/02/17/写Hexo博客/index.html">
+<meta property="og:title" content="Java集合框架综述">
+<meta property="og:url" content="https://brandon-winterfell.github.io/2017/03/16/Java集合框架综述/index.html">
 <meta property="og:site_name" content="Brandon-Winterfell's Blog">
-<meta property="og:description" content="之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。
-看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，而报错信息中还含有乱码，这下子傻眼了，卧槽。">
-<meta property="og:updated_time" content="2017-02-22T12:06:04.000Z">
+<meta property="og:description" content="关键字： 微型数据库、增删改查操作、时空复杂度
+
+本文主要还对Java中的集合框架做一个大致描述，从一个高的角度俯视这个框架，了解这个框架的一些理念与约定，会大大帮助后面分析某个具体类。
+与现代的数据结构类库的常见情况一样，Java集合类库也将 接口（interface） 与 实现（implementation) 分类
+首先要明确，集合代表了一组对象（和数组一样，但数组长度不能变，而集合能）。J">
+<meta property="og:updated_time" content="2017-03-16T11:03:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写Hexo博客">
-<meta name="twitter:description" content="之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。
-看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，而报错信息中还含有乱码，这下子傻眼了，卧槽。">
+<meta name="twitter:title" content="Java集合框架综述">
+<meta name="twitter:description" content="关键字： 微型数据库、增删改查操作、时空复杂度
+
+本文主要还对Java中的集合框架做一个大致描述，从一个高的角度俯视这个框架，了解这个框架的一些理念与约定，会大大帮助后面分析某个具体类。
+与现代的数据结构类库的常见情况一样，Java集合类库也将 接口（interface） 与 实现（implementation) 分类
+首先要明确，集合代表了一组对象（和数组一样，但数组长度不能变，而集合能）。J">
 
 
 
@@ -127,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://brandon-winterfell.github.io/2017/02/17/写Hexo博客/"/>
+  <link rel="canonical" href="https://brandon-winterfell.github.io/2017/03/16/Java集合框架综述/"/>
 
 
 
 
 
-  <title> 写Hexo博客 | Brandon-Winterfell's Blog </title>
+  <title> Java集合框架综述 | Brandon-Winterfell's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://brandon-winterfell.github.io/2017/02/17/写Hexo博客/">
+  <link itemprop="mainEntityOfPage" href="https://brandon-winterfell.github.io/2017/03/16/Java集合框架综述/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Brandon-Winterfell">
@@ -294,7 +303,7 @@
             
             
               
-                写Hexo博客
+                Java集合框架综述
               
             
           </h1>
@@ -309,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-17T12:03:15+08:00">
-                2017-02-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-16T15:30:05+08:00">
+                2017-03-16
               </time>
             
 
@@ -320,6 +329,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -328,8 +359,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/17/写Hexo博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/写Hexo博客/" itemprop="commentCount"></span>
+                <a href="/2017/03/16/Java集合框架综述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/16/Java集合框架综述/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -337,7 +368,7 @@
 
           
           
-             <span id="/2017/02/17/写Hexo博客/" class="leancloud_visitors" data-flag-title="写Hexo博客">
+             <span id="/2017/03/16/Java集合框架综述/" class="leancloud_visitors" data-flag-title="Java集合框架综述">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -366,12 +397,16 @@
       
 
       
-        <p>之前配置好Hexo博客，昨天决定写文章，才发现忘了用哪个终端了，卧槽。第一反应是node.js，好吧，我连要怎么开始都不知道，就是输入什么命令行。用cd命令进入到博客目录D:\HexoBlog\blog，就可以执行hexo的命令了。</p>
-<p>看其他文章怎么开始写博客，照着写一下，除了最后一步，一切都还好，就是hexo d命令不能推到远程服务器。以前一切都正常的，而报错信息中还含有乱码，这下子傻眼了，卧槽。<a id="more"></a><br>这里要插入图片||难道不是这个终端。换git bash，就有另外一个问题，我没有权限。 这里要插入图片 </p>
-<p>好吧，然后就是一通Google 百度。费了九牛二虎之力，看到这里<a href="http://blog.cumtpn.com/2016/10/14/hexo-blog/#more，才发现原因是：git的执行目录没有加入系统环境变量。解决方案：1.将git加入环境变量Path中。2.直接在git" target="_blank" rel="external">http://blog.cumtpn.com/2016/10/14/hexo-blog/#more，才发现原因是：git的执行目录没有加入系统环境变量。解决方案：1.将git加入环境变量Path中。2.直接在git</a> shell中进行操作。</p>
-<p>以前呢是正常的，而我也没去碰到什么hexo的配置呀什么的，git的配置也没有碰过呀。所以就试着用git shell操作，进入到博客目录后D:\HexoBlog\blog，就有点印象了，之前应该是用这个终端写的。好吧，先试一下再说，没有报错误，很正常，就是新文章没有出现在服务器网页上，可是本地查看却能看到新文章localhost 5000端口，很奇怪，但是log显示说内容已经是最新的了，怎么可能。去github上看一下，_posts目录没有新文章，卧槽。去查一下怎么发文章，麻蛋，还要执行一下hexo g来生成网页内容的，我之前看的一篇文章没有提到这句命令，直接就调用了hexo d。执行完hexo g，hexo d，就能在远程网页上显示了。哎呀，太开心了。</p>
-<p>其实就是我忘了用哪个终端的问题引起的，然后就发现了挺多问题。哈哈。用其他终端好像也是可以的，而我没有做相应的配置而已吧。</p>
-<p>localhost查看不能用4000（默认）端口，据说是与福昕阅读器的端口冲突了，因为我电脑装有这款阅读器，所以得改端口号，比如说改为5000，然后就能正常访问了。</p>
+        <blockquote>
+<p>关键字： <strong>微型数据库、增删改查操作、时空复杂度</strong></p>
+</blockquote>
+<p>本文主要还对Java中的集合框架做一个大致描述，从<strong>一个高的角度</strong>俯视这个框架，了解这个框架的一些<strong>理念与约定</strong>，会大大帮助后面分析某个具体类。</p>
+<p>与现代的数据结构类库的常见情况一样，Java集合类库也将 <code>接口（interface）</code> 与 <code>实现（implementation)</code> 分类</p>
+<p>首先要明确，集合代表了一组对象（和数组一样，但数组长度不能变，而集合能）。Java中的集合框架定义了一套<strong>规范</strong>（<strong>接口</strong>），用来<strong>表示、操作</strong>集合，使具体操作与实现细节解耦。</p>
+<p>下面这句话我觉得超赞。</p>
+<p>其实说白了，可以把一个集合看成一个<strong>微型数据库</strong>，操作不外乎<strong>“增删改查”四种操作</strong>，我们在学习使用一个具体的集合类时，需要把这四个操作的 <code>时空复杂度</code> 弄清楚了，基本上就可以说掌握这个类了。</p>
+<hr>
+<p>内容来自：Java集合框架综述 <a href="http://liujiacai.net/blog/2015/09/01/java-collection-overview" target="_blank" rel="external">http://liujiacai.net/blog/2015/09/01/java-collection-overview</a></p>
 
       
     </div>
@@ -393,6 +428,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java集合/" rel="tag"># java集合</a>
+          
+        </div>
+      
 
       
         
@@ -402,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/20/my-new-post/" rel="next" title="这是第一篇自己写的Hexo博客">
-                <i class="fa fa-chevron-left"></i> 这是第一篇自己写的Hexo博客
+              <a href="/2017/03/16/接口Map/" rel="next" title="接口Map">
+                <i class="fa fa-chevron-left"></i> 接口Map
               </a>
             
           </div>
@@ -412,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/22/Java基础知识总结/" rel="prev" title="Java基础知识总结">
-                Java基础知识总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/16/Java-HashMap源码解析/" rel="prev" title="Java HashMap源码解析">
+                Java HashMap源码解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -440,8 +481,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/17/写Hexo博客/"
-           data-title="写Hexo博客" data-url="https://brandon-winterfell.github.io/2017/02/17/写Hexo博客/">
+      <div class="ds-thread" data-thread-key="2017/03/16/Java集合框架综述/"
+           data-title="Java集合框架综述" data-url="https://brandon-winterfell.github.io/2017/03/16/Java集合框架综述/">
       </div>
     
   </div>

@@ -87,21 +87,28 @@
 
 
 
-<meta name="description" content="映射表（map）数据结构的设计由来通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查找到值。例如，有一张关于员工信息的记录表，键为员工ID，值为Employee对象。
-Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这两个类都实现了Map接口。">
+<meta name="description" content="tips: 成员方法 不外乎是“增删改查”，这也反映了我们编写程序时，一定是以“数据”为导向的。
+
+映射表（map）数据结构的设计由来集是一个集合，它可以快速地查找现有的元素。但是，要查看一个元素，需要有要查找元素的精确副本。这不是一种非常通用的查找方式。
+通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查">
 <meta property="og:type" content="article">
 <meta property="og:title" content="接口Map">
 <meta property="og:url" content="https://brandon-winterfell.github.io/2017/03/16/接口Map/index.html">
 <meta property="og:site_name" content="Brandon-Winterfell's Blog">
-<meta property="og:description" content="映射表（map）数据结构的设计由来通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查找到值。例如，有一张关于员工信息的记录表，键为员工ID，值为Employee对象。
-Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这两个类都实现了Map接口。">
+<meta property="og:description" content="tips: 成员方法 不外乎是“增删改查”，这也反映了我们编写程序时，一定是以“数据”为导向的。
+
+映射表（map）数据结构的设计由来集是一个集合，它可以快速地查找现有的元素。但是，要查看一个元素，需要有要查找元素的精确副本。这不是一种非常通用的查找方式。
+通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查">
+<meta property="og:image" content="https://brandon-winterfell.github.io/images/map_field_method.png">
 <meta property="og:image" content="https://brandon-winterfell.github.io/images/map.gif">
-<meta property="og:updated_time" content="2017-03-16T06:25:28.000Z">
+<meta property="og:updated_time" content="2017-03-16T11:46:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口Map">
-<meta name="twitter:description" content="映射表（map）数据结构的设计由来通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查找到值。例如，有一张关于员工信息的记录表，键为员工ID，值为Employee对象。
-Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这两个类都实现了Map接口。">
-<meta name="twitter:image" content="https://brandon-winterfell.github.io/images/map.gif">
+<meta name="twitter:description" content="tips: 成员方法 不外乎是“增删改查”，这也反映了我们编写程序时，一定是以“数据”为导向的。
+
+映射表（map）数据结构的设计由来集是一个集合，它可以快速地查找现有的元素。但是，要查看一个元素，需要有要查找元素的精确副本。这不是一种非常通用的查找方式。
+通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查">
+<meta name="twitter:image" content="https://brandon-winterfell.github.io/images/map_field_method.png">
 
 
 
@@ -390,9 +397,17 @@ Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这
       
 
       
-        <h3 id="映射表（map）数据结构的设计由来"><a href="#映射表（map）数据结构的设计由来" class="headerlink" title="映射表（map）数据结构的设计由来"></a>映射表（map）数据结构的设计由来</h3><p>通常，我们知道某些键的信息，并想要查找与之对应的元素。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查找到值。例如，有一张关于员工信息的记录表，键为员工ID，值为Employee对象。</p>
+        <blockquote>
+<p>tips: <code>成员方法</code> 不外乎是“<strong>增删改查</strong>”，这也反映了我们编写程序时，<strong>一定是以“数据”为导向的</strong>。</p>
+</blockquote>
+<h3 id="映射表（map）数据结构的设计由来"><a href="#映射表（map）数据结构的设计由来" class="headerlink" title="映射表（map）数据结构的设计由来"></a>映射表（map）数据结构的设计由来</h3><p>集是一个集合，它可以快速地查找现有的元素。但是，要查看一个元素，需要有要查找元素的精确副本。这不是一种非常通用的查找方式。</p>
+<p>通常，我们<strong>知道某些键的信息，并想要查找与之对应的元素</strong>。映射表（map）数据结构就是为此设计的。映射表用来存放键/值对。如果提供了键，就能够查找到值。例如，有一张关于员工信息的记录表，键为员工ID，值为Employee对象。</p>
 <p>Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这两个类都实现了Map接口。<a id="more"></a></p>
 <p>散列映射表（HashMap）对键进行散列，树映射表（TreeMap）用键的整体顺序对元素进行排序，并将其组织成搜索树。散列或比较函数<em>只能作用于键</em>。与键关联的值不能进行散列或比较。</p>
+<p>另外提一下AbstractMap抽象类。 <code>AbstractMap</code> 对Map中的方法提供了一个基本实现，减少了直接去实现Map接口的工作量。</p>
+<h3 id="Map的方法和内部类"><a href="#Map的方法和内部类" class="headerlink" title="Map的方法和内部类"></a>Map的方法和内部类</h3><p>在eclipse中的outline面板可以看到 <code>Map</code> 接口里面包含以下成员方法与内部类：</p>
+<p><img src="/images/map_field_method.png" alt="Map的结构图"></p>
+<p>可以看到，这里的成员方法不外乎是“<strong>增删改查</strong>”，这也反映了我们编写程序时，<strong>一定是以“数据”为导向的</strong>。</p>
 <h3 id="了解Map接口和方法"><a href="#了解Map接口和方法" class="headerlink" title="了解Map接口和方法"></a>了解Map接口和方法</h3><p>Java核心类中有很多预定义的Map类。在介绍具体实现之前，先介绍一下Map接口本身，一遍了解<strong>所有实现的共同点</strong>。（因为接口是一个规范。）Map接口定义了四种类型的方法，每个Map的具体实现都包含这些方法。</p>
 <h4 id="覆盖的方法"><a href="#覆盖的方法" class="headerlink" title="覆盖的方法"></a>覆盖的方法</h4><p>我们将这Object的这两个方法覆盖，以正确比较Map对象的等价性。</p>
 <ul>
@@ -485,6 +500,9 @@ Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这
 <p>所有这一切意味着您不需要一个决策树来决定是使用同步的 Map 还是使用非同步的 Map， 而只需使用 ConcurrentHashMap。当然，在某些情况下，使用 ConcurrentHashMap 并不合适。但这些情况很少见，并且应具体情况具体处理。这就是监测的用途。</p>
 <h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>通过 Oracle JDeveloper 可以非常轻松地创建一个用于比较各种 Map 性能的测试类。更重要的是，集成良好的监测器可以在开发过程中快速、轻松地识别性能瓶颈 - 集成到 IDE 中的监测器通常被较频繁地使用，以便帮助构建一个成功的工程。现在，您已经拥有了一个监测器并了解了有关通用 Map 及其性能的基础知识，可以开始运行您自己的测试，以查明您的应用程序是否因 Map 而存在瓶颈以及在何处需要更改所使用的 Map。</p>
 <p>以上内容介绍了通用 Map 及其性能的基础知识。当然，有关特定 Map 实现以及如何根据不同的需求使用它们还存在更多复杂和值得关注的事项，这些将在本文第 2 部分中介绍。</p>
+<hr>
+<p>本文大部分内容来自：Java Map 集合类简介 <a href="http://www.oracle.com/technetwork/cn/articles/maps1-100947-zhs.html" target="_blank" rel="external">http://www.oracle.com/technetwork/cn/articles/maps1-100947-zhs.html</a></p>
+<p>小部分来自：《Java核心技术 卷1》</p>
 
       
     </div>
@@ -530,6 +548,10 @@ Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/16/Java集合框架综述/" rel="prev" title="Java集合框架综述">
+                Java集合框架综述 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -605,7 +627,7 @@ Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +645,7 @@ Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -658,7 +680,7 @@ Java类库为映射表提供了两个通用的实现：HashMap 和 TreeMap。这
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#映射表（map）数据结构的设计由来"><span class="nav-number">1.</span> <span class="nav-text">映射表（map）数据结构的设计由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解Map接口和方法"><span class="nav-number">2.</span> <span class="nav-text">了解Map接口和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#覆盖的方法"><span class="nav-number">2.1.</span> <span class="nav-text">覆盖的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map构建的方法"><span class="nav-number">2.2.</span> <span class="nav-text">Map构建的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Map的方法"><span class="nav-number">2.3.</span> <span class="nav-text">查看Map的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问元素的方法"><span class="nav-number">2.4.</span> <span class="nav-text">访问元素的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心Map"><span class="nav-number">3.</span> <span class="nav-text">核心Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用-Map，用于在应用程序中管理映射，通常在-java-util-程序包中实现"><span class="nav-number">3.1.</span> <span class="nav-text">通用 Map，用于在应用程序中管理映射，通常在 java.util 程序包中实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#专用-Map，您通常不必亲自创建此类-Map，而是通过某些其他类对其进行访问"><span class="nav-number">3.2.</span> <span class="nav-text">专用 Map，您通常不必亲自创建此类 Map，而是通过某些其他类对其进行访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个用于帮助实现您自己的-Map-类的抽象类"><span class="nav-number">3.3.</span> <span class="nav-text">一个用于帮助实现您自己的 Map 类的抽象类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部哈希：哈希映射技术"><span class="nav-number">4.</span> <span class="nav-text">内部哈希：哈希映射技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化-Hasmap"><span class="nav-number">5.</span> <span class="nav-text">优化 Hasmap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调整-Map-实现的大小"><span class="nav-number">5.1.</span> <span class="nav-text">调整 Map 实现的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用负载因子"><span class="nav-number">5.2.</span> <span class="nav-text">使用负载因子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择适当的-Map"><span class="nav-number">6.</span> <span class="nav-text">选择适当的 Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map选择"><span class="nav-number">6.1.</span> <span class="nav-text">Map选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步Map"><span class="nav-number">6.2.</span> <span class="nav-text">同步Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束语"><span class="nav-number">7.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#映射表（map）数据结构的设计由来"><span class="nav-number">1.</span> <span class="nav-text">映射表（map）数据结构的设计由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map的方法和内部类"><span class="nav-number">2.</span> <span class="nav-text">Map的方法和内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解Map接口和方法"><span class="nav-number">3.</span> <span class="nav-text">了解Map接口和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#覆盖的方法"><span class="nav-number">3.1.</span> <span class="nav-text">覆盖的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map构建的方法"><span class="nav-number">3.2.</span> <span class="nav-text">Map构建的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看Map的方法"><span class="nav-number">3.3.</span> <span class="nav-text">查看Map的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问元素的方法"><span class="nav-number">3.4.</span> <span class="nav-text">访问元素的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心Map"><span class="nav-number">4.</span> <span class="nav-text">核心Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用-Map，用于在应用程序中管理映射，通常在-java-util-程序包中实现"><span class="nav-number">4.1.</span> <span class="nav-text">通用 Map，用于在应用程序中管理映射，通常在 java.util 程序包中实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#专用-Map，您通常不必亲自创建此类-Map，而是通过某些其他类对其进行访问"><span class="nav-number">4.2.</span> <span class="nav-text">专用 Map，您通常不必亲自创建此类 Map，而是通过某些其他类对其进行访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个用于帮助实现您自己的-Map-类的抽象类"><span class="nav-number">4.3.</span> <span class="nav-text">一个用于帮助实现您自己的 Map 类的抽象类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部哈希：哈希映射技术"><span class="nav-number">5.</span> <span class="nav-text">内部哈希：哈希映射技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化-Hasmap"><span class="nav-number">6.</span> <span class="nav-text">优化 Hasmap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调整-Map-实现的大小"><span class="nav-number">6.1.</span> <span class="nav-text">调整 Map 实现的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用负载因子"><span class="nav-number">6.2.</span> <span class="nav-text">使用负载因子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择适当的-Map"><span class="nav-number">7.</span> <span class="nav-text">选择适当的 Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map选择"><span class="nav-number">7.1.</span> <span class="nav-text">Map选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步Map"><span class="nav-number">7.2.</span> <span class="nav-text">同步Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束语"><span class="nav-number">8.</span> <span class="nav-text">结束语</span></a></li></ol></div>
             
 
           </div>
